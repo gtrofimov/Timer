@@ -14,3 +14,5 @@ _deps
 CMakeUserPresets.json
 reports
 .vscode
+*.properties
+
