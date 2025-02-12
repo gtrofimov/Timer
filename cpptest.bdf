@@ -1,0 +1,42 @@
+------- cpptestscan v.10.7.1.20241112B4223 (cpptesttrace) -------
+working_dir=/home/gtrofimov/examples/Timer
+project_name=Timer
+arg=/usr/bin/cc
+arg=-o
+arg=CMakeFiles/timer.dir/clock.c.o
+arg=-c
+arg=/home/gtrofimov/examples/Timer/clock.c
+------- cpptestscan v.10.7.1.20241112B4223 (cpptesttrace) -------
+working_dir=/home/gtrofimov/examples/Timer
+project_name=Timer
+arg=/usr/bin/cc
+arg=-o
+arg=CMakeFiles/timer.dir/driver.c.o
+arg=-c
+arg=/home/gtrofimov/examples/Timer/driver.c
+------- cpptestscan v.10.7.1.20241112B4223 (cpptesttrace) -------
+working_dir=/home/gtrofimov/examples/Timer
+project_name=Timer
+arg=/usr/bin/cc
+arg=-o
+arg=CMakeFiles/timer.dir/timer.c.o
+arg=-c
+arg=/home/gtrofimov/examples/Timer/timer.c
+------- cpptestscan v.10.7.1.20241112B4223 (cpptesttrace) -------
+working_dir=/home/gtrofimov/examples/Timer
+project_name=Timer
+arg=/usr/bin/cc
+arg=-o
+arg=CMakeFiles/timer.dir/stdinout.c.o
+arg=-c
+arg=/home/gtrofimov/examples/Timer/stdinout.c
+------- cpptestscan v.10.7.1.20241112B4223 (cpptesttrace) -------
+working_dir=/home/gtrofimov/examples/Timer
+project_name=Timer
+arg=/usr/bin/cc
+arg=CMakeFiles/timer.dir/clock.c.o
+arg=CMakeFiles/timer.dir/driver.c.o
+arg=CMakeFiles/timer.dir/timer.c.o
+arg=CMakeFiles/timer.dir/stdinout.c.o
+arg=-o
+arg=timer
