@@ -13,9 +13,6 @@ jobs:
     permissions:
       # required for all workflows
       security-events: write
-      # only required for workflows in private repositories
-      actions: read
-      contents: read
     steps:
       # This step checks out a copy of your repository.
       - name: Checkout repository
@@ -24,7 +21,7 @@ jobs:
         uses: github/codeql-action/upload-sarif@v3
         with:
           # Chekcout path
-          checkout_path: file:///home/gtrofimov/examples/Timer
+          checkout_path: file:/home/gtrofimov/examples/Timer
           # Path to SARIF file relative to the root of the repository
           sarif_file: reports/report.sarif
           # Optional category for the results
