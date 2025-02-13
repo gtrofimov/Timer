@@ -5,8 +5,9 @@
         {
             "invocations": [
                 {
-                    "workingDirectory": "/home/gtrofimov/examples/Timer",
-                    "executionSuccessful": true
+                    "workingDirectory": {"uri": "file:/home/gtrofimov/examples/Timer"},
+                    "executionSuccessful": true,
+
                 }
             ],
             "tool": {
