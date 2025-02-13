@@ -3,6 +3,9 @@
     "version": "2.1.0",
     "runs": [
         {
+            "invocations": [
+                { "workingDirectory": { "uri": "file:/home/gtrofimov/examples/Timer" } }
+            ],
             "tool": {
                 "driver": {
                     "name": "C/C++test",
