@@ -82,7 +82,8 @@
                     "ruleId": "BD-PB-NP",
                     "level": "error",
                     "message": {
-                        "text": "\"the_record\" may possibly be null"
+                        "text": "\"the_record\" may possibly be null",
+                        "markdown": "**\\[Line 49\\] \"the\\_record\" may possibly be null**  \n  \ntimer.c&nbsp;(40)&nbsp;:&nbsp;int start\\_h, start\\_m, end\\_h, end\\_m;  \ntimer.c&nbsp;(41)&nbsp;:&nbsp;struct timer\\_record\\* the\\_record;  \ntimer.c&nbsp;(42)&nbsp;:&nbsp;time\\_t timer;  \ntimer.c&nbsp;(43)&nbsp;:&nbsp;struct tm\\* tm\\_tmp;  \ntimer.c&nbsp;(45)&nbsp;:&nbsp;timer = time\\(NULL\\);  \ntimer.c&nbsp;(46)&nbsp;:&nbsp;tm\\_tmp = localtime\\(&timer\\);  \n**Source of null value**  \ntimer.c&nbsp;(48)&nbsp;:&nbsp;malloc\\(\\.\\.\\.\\)&nbsp;&nbsp;_\\*\\*\\*&nbsp;Null value carrier: malloc\\(\\.\\.\\.\\)_  \ntimer.c&nbsp;(48)&nbsp;:&nbsp;the\\_record = \\(struct timer\\_record\\*\\)malloc\\(sizeof\\(struct timer\\_record\\)\\);&nbsp;&nbsp;_\\*\\*\\*&nbsp;Null value carrier: malloc\\(\\.\\.\\.\\) \\-> the\\_record_  \n**Null pointer dereferencing point**&nbsp;  \ntimer.c&nbsp;(49)&nbsp;:&nbsp;memset\\(the\\_record, 0, sizeof\\(struct timer\\_record\\)\\);&nbsp;&nbsp;_\\*\\*\\*&nbsp;Null value carrier: the\\_record_"
                     },
                     "partialFingerprints": {
                         "lineHash": "1340052799"
@@ -250,7 +251,8 @@
                     "ruleId": "BD-PB-ARRAY",
                     "level": "error",
                     "message": {
-                        "text": "Possibly accessing array \"timer_records\" out of bounds at index -1. Correct index(es): [0...99]"
+                        "text": "Possibly accessing array \"timer_records\" out of bounds at index -1. Correct index(es): [0...99]",
+                        "markdown": "**\\[Line 116\\] Possibly accessing array \"timer\\_records\" out of bounds at index \\-1\\. Correct index\\(es\\): \\[0\\.\\.\\.99\\]**  \n  \n**Start of the path**  \ntimer.c&nbsp;(25)&nbsp;:&nbsp;void uninit\\_timer\\(\\)  \ntimer.c&nbsp;(28)&nbsp;:&nbsp;int i;  \ntimer.c&nbsp;(30)&nbsp;:&nbsp;for \\(i = 0; i < max\\_records; i\\+\\+\\) \\{&nbsp;&nbsp;_\\*\\*\\*&nbsp;Loop condition evaluation: \\(i < 100\\) \\(true\\)_&nbsp;&nbsp;_\\*\\*\\*&nbsp;Entering the loop_  \ntimer.c&nbsp;(31)&nbsp;:&nbsp;delete\\_timer\\_record\\(i\\);  \n        timer.c&nbsp;(110)&nbsp;:&nbsp;struct timer\\_record\\* tr = timer\\_records\\[idx\\];  \n        timer.c&nbsp;(111)&nbsp;:&nbsp;int i;  \n        timer.c&nbsp;(114)&nbsp;:&nbsp;for \\(i = idx\\-1; i < curr\\_index; i\\+\\+\\)&nbsp;&nbsp;_\\*\\*\\*&nbsp;Loop condition evaluation: \\(i < curr\\_index\\) \\(assuming true\\)_&nbsp;&nbsp;_\\*\\*\\*&nbsp;Entering the loop_  \n        **Out of bounds access point**&nbsp;  \n        timer.c&nbsp;(116)&nbsp;:&nbsp;if \\(0 == timer\\_records\\[i\\]\\) \\{"
                     },
                     "partialFingerprints": {
                         "lineHash": "1747357394"
@@ -407,7 +409,8 @@
                     "ruleId": "BD-PB-CC",
                     "level": "error",
                     "message": {
-                        "text": "Condition \"tr\" always evaluates to true"
+                        "text": "Condition \"tr\" always evaluates to true",
+                        "markdown": "**\\[Line 136\\] Condition \"tr\" always evaluates to true**  \n  \n**Start of the path**  \ntimer.c&nbsp;(126)&nbsp;:&nbsp;void format\\_timer\\_record\\(int idx, char\\* buf\\)  \ntimer.c&nbsp;(128)&nbsp;:&nbsp;char start\\[BUF\\_SIZE\\];  \ntimer.c&nbsp;(129)&nbsp;:&nbsp;char end\\[BUF\\_SIZE\\];  \ntimer.c&nbsp;(131)&nbsp;:&nbsp;struct timer\\_record\\* tr = timer\\_records\\[idx\\];  \ntimer.c&nbsp;(133)&nbsp;:&nbsp;strftime\\(start, BUF\\_SIZE, \"%I:%M %p\", localtime\\(&tr\\->starttime\\)\\);  \ntimer.c&nbsp;(134)&nbsp;:&nbsp;strftime\\(end, BUF\\_SIZE, \"%I:%M %p\", localtime\\(&tr\\->endtime\\)\\);  \n**Point where senseless condition is used**&nbsp;  \ntimer.c&nbsp;(136)&nbsp;:&nbsp;if \\(tr\\) \\{"
                     },
                     "partialFingerprints": {
                         "lineHash": "130267201"
