@@ -4,7 +4,26 @@
     "runs": [
         {
             "invocations": [
-                { "workingDirectory": { "uri": "file:/home/gtrofimov/examples/Timer" } }
+                {
+                    "workingDirectory": "/home/gtrofimov/examples/Timer",
+                    "executionSuccessful": true,
+                    "startTimeUtc": "2024-02-29T12:00:00Z",
+                    "endTimeUtc": "2024-02-29T12:00:01Z",
+                    "toolExecutionNotifications": [
+                        {
+                            "notificationLevel": "warning",
+                            "message": {
+                                "text": "This is a warning message"
+                            }
+                        },
+                        {
+                            "notificationLevel": "error",
+                            "message": {
+                                "text": "This is an error message"
+                            }
+                        }
+                    ]
+                }
             ],
             "tool": {
                 "driver": {
