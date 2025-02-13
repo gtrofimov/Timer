@@ -25,6 +25,7 @@ jobs:
         with:
           # Path to SARIF file relative to the root of the repository
           sarif_file: reports/report.sarif
+          checkout_path: file:/home/gtrofimov/examples/Timer
           # Optional category for the results
           # Used to differentiate multiple results for one commit
-          category: my-analysis-tool
+          category: Parasoft
