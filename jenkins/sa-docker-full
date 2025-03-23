@@ -142,7 +142,7 @@ pipeline {
     post {
         // archive jtest Artofacts after success
         success {
-                sh 'echo "Success, publishing results..."'}
+                sh 'echo "Success, publishing results..."'
                 recordIssues (
                     tools: [
                         parasoftFindings (
@@ -151,7 +151,7 @@ pipeline {
                         )
                     ]
                 )
-
+        }
         // Clean after build
         always {
             
