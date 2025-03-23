@@ -104,7 +104,7 @@ pipeline {
                         -S . -B build && \
                         cpptestcli \
                         -settings './cpptest.properties;cpptest-sa.properties' \
-                        -compiler gcc_9-64 \
+                        -compiler gcc_10-64 \
                         -config '${cpptestSAConfig}' \
                         -module . \
                         -input build/compile_commands.json"
