@@ -88,7 +88,7 @@ pipeline {
                             echo $"
                             dtp.project=${app_name}
                             build.id=${app_name}-${BUILD_TIMESTAMP}
-                            " > ./jtest/cpptest-sa.properties
+                            " > ./cpptest-sa.properties
                         '''
                         
                         // Run C/C++test Static Analysis
