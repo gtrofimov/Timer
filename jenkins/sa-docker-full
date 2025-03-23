@@ -93,7 +93,7 @@ pipeline {
                         
                         // Run C/C++test Static Analysis
                         sh '''
-                        $ docker run \
+                        docker run \
                         -u ${UID}:${GID} \
                         --rm -i \
                         --name cpptest \
