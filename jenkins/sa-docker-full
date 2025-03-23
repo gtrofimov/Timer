@@ -1,0 +1,156 @@
+pipeline {
+    agent any
+    
+    options {
+        // This is required if you want to clean before build
+        skipDefaultCheckout(true)
+        
+        // Ontly keep 5 jobs history and 2 jobs artifacts
+        buildDiscarder(logRotator(numToKeepStr: '5', artifactNumToKeepStr: '2'))
+    }
+    parameters {
+        string(name: 'LS_URL', defaultValue: '', description: 'Parasoft LS URL')
+        //string(name: 'CTP_URL', defaultValue: '', description: 'Parasoft CTP URL')
+        string(name: 'DTP_URL', defaultValue: '', description: 'Parasoft DTP URL')
+        string(name: 'DTP_USER', defaultValue: '', description: 'Parasoft DTP Username')
+        password(name: 'DTP_PASS', defaultValue: '', description: 'Parasoft DTP Password')
+        string(name: 'BUILD_ID', defaultValue: 'baseline', description: 'The build Id of the project in DTP and CTP')
+
+        // Add other parameters as needed
+    }
+    environment {
+        // App Details
+        app_name = 'Timer' // top level DTP Project
+        
+        // Parasoft Settings
+        cpptestSAConfig="builtin://Recommended Rules"
+
+        // Dynamic configs
+        BUILD_TIMESTAMP = "${BUILD_ID}"
+        //BUILD_TIMESTAMP = sh(script: 'date +%Y%m%d%H%M', returnStdout: true).trim()
+
+    }
+
+    stages {
+        stage('Set Up') {
+            steps {
+                // Clean workspace before build
+                cleanWs()
+                // Checkout project
+                checkout([$class: 'GitSCM', 
+                    branches: [[name: "${env.GIT_BRANCH}"]], 
+                    userRemoteConfigs: [[url: "${env.GIT_URL}"]]])
+
+                // set GID
+                // set PUBLIC_IP
+                script {
+                    env.GID = sh(script: 'id -g jenkins', returnStdout: true).trim()
+                    env.PUBLIC_IP = sh(script: """curl -s http://checkip.amazonaws.com """, returnStdout: true).trim()
+                }
+
+                // set up Parasoft License
+                sh '''
+                    # Set Up and write .properties file
+                    echo $"
+                    parasoft.eula.accepted=true
+                    
+                    #jtest.license.use_network=true
+                    #jtest.license.network.edition=server_edition
+                    
+                    license.network.use.specified.server=true
+                    license.network.auth.enabled=true
+                    license.network.url=${LS_URL}
+                    license.network.user=${DTP_USER}
+                    license.network.password=${DTP_PASS}
+                    
+                    dtp.url=${DTP_URL}
+                    dtp.user=${DTP_USER}
+                    dtp.password=${DTP_PASS}
+                    
+                    report.scontrol=min
+                    report.coverage.line.hashes=true
+                    report.dtp.publish=true
+                    
+                    console.verbosity.level=high
+                    " >> ./cpptest.properties
+                    '''                
+            }
+        }
+        
+        stage('Build: C/C++test Static Cov') {
+            when { equals expected: true, actual: true }
+            steps {
+
+                // Run Jtest Unit test with CC
+                script {
+
+                        // Setup stage-specific additional settings
+                        sh '''
+                            # Set Up and write .properties file
+                            echo $"
+                            dtp.project=${app_name}
+                            build.id=${app_name}-${BUILD_TIMESTAMP}
+                            " > ./jtest/cpptest-sa.properties
+                        '''
+                        
+                        // Run C/C++test Static Analysis
+                        sh '''
+                        $ docker run \
+                        -u ${UID}:${GID} \
+                        --rm -i \
+                        --name cpptest \
+                        -v "$PWD:$PWD" \
+                        -w "$PWD" parasoft/cpptest bash -c " \
+                        
+                        cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 \
+                        -S . -B build && \
+                        cpptestcli \
+                        -settings './cpptest.properties;cpptest-sa.properties' \
+                        -compiler gcc_9-64 \
+                        -config '${cpptestSAConfig}' \
+                        -module . \
+                        -input build/compile_commands.json"
+
+                        '''                    
+                }
+
+                // Parasoft Findings plugin for Unit Tests Results
+                // echo '---> Parsing 10.x unit test reports'
+                // script {
+                //     step([$class: 'XUnitPublisher', 
+                //         // thresholds: [failed(
+                //         //     failureNewThreshold: '0', 
+                //         //     failureThreshold: '0')
+                //         // ],
+                //         tools: [[$class: 'ParasoftType', 
+                //             deleteOutputFiles: true, 
+                //             failIfNotNew: false, 
+                //             pattern: '**/target/jtest/ut/*report*.xml', 
+                //             skipNoTestFiles: true, 
+                //             stopProcessingIfError: false
+                //         ]]
+                //     ])
+                // }
+            }
+        }
+        stage('Release') {
+            steps {
+                sh 'echo "Release"'
+            }   
+        }
+    }
+    post {
+        // archive jtest Artofacts after success
+        success {
+                sh 'echo "Success, nothing to archive..."'}
+
+        // Clean after build
+        always {
+            
+            // delete Cov-tool stuff
+            sh  '''
+                echo "cleaning up..."
+                '''
+        }
+    }
+}
