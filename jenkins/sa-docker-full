@@ -65,9 +65,10 @@ pipeline {
                     dtp.user=${DTP_USER}
                     dtp.password=${DTP_PASS}
                     
-                    report.scontrol=min
-                    report.coverage.line.hashes=true
-                    report.dtp.publish=true
+                    scontrol.rep1.type=git
+                    scontrol.rep1.git.url=https://github.com/gtrofimov/Timer.git
+                    scontrol.rep1.git.branch=master
+                    scontrol.git.exec=/usr/bin/git
                     
                     console.verbosity.level=high
                     " >> ./cpptest.properties
@@ -141,7 +142,15 @@ pipeline {
     post {
         // archive jtest Artofacts after success
         success {
-                sh 'echo "Success, nothing to archive..."'}
+                sh 'echo "Success, publishing results..."'}
+                recordIssues (
+                    tools: [
+                        parasoftFindings (
+                            pattern: '**/report.xml',
+                            localSettingsPath: 'cpptest.properties'
+                        )
+                    ]
+                )
 
         // Clean after build
         always {
