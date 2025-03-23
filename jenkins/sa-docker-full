@@ -140,7 +140,7 @@ pipeline {
         }
     }
     post {
-        // archive jtest Artofacts after success
+        // archive jtest Artifacts after success
         success {
                 sh 'echo "Success, publishing results..."'
                 recordIssues (
