@@ -79,7 +79,7 @@ pipeline {
             when { equals expected: true, actual: true }
             steps {
 
-                // Run Jtest Unit test with CC
+                // Run C/C++test SA
                 script {
 
                         // Setup stage-specific additional settings
@@ -89,27 +89,27 @@ pipeline {
                             dtp.project=${app_name}
                             build.id=${app_name}-${BUILD_TIMESTAMP}
                             " > ./cpptest-sa.properties
-                        '''
+                            '''
                         
                         // Run C/C++test Static Analysis
                         sh '''
-                        docker run \
-                        -u ${UID}:${GID} \
-                        --rm -i \
-                        --name cpptest \
-                        -v "$PWD:$PWD" \
-                        -w "$PWD" parasoft/cpptest bash -c " \
-                        
-                        cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 \
-                        -S . -B build && \
-                        cpptestcli \
-                        -settings './cpptest.properties;cpptest-sa.properties' \
-                        -compiler gcc_10-64 \
-                        -config '${cpptestSAConfig}' \
-                        -module . \
-                        -input build/compile_commands.json"
+                            docker run \
+                            -u ${UID}:${GID} \
+                            --rm -i \
+                            --name cpptest \
+                            -v "$PWD:$PWD" \
+                            -w "$PWD" parasoft/cpptest bash -c " \
+                            
+                            cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 \
+                            -S . -B build && \
+                            cpptestcli \
+                            -settings './cpptest.properties;cpptest-sa.properties' \
+                            -compiler gcc_10-64 \
+                            -config '${cpptestSAConfig}' \
+                            -module . \
+                            -input build/compile_commands.json"
 
-                        '''                    
+                            '''                    
                 }
 
                 // Parasoft Findings plugin for Unit Tests Results
