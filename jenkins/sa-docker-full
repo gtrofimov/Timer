@@ -67,7 +67,7 @@ pipeline {
                     
                     report.scontrol=min
                     report.coverage.line.hashes=true
-                    report.dtp.publish=true
+                    report.dtp.publish=false
                     
                     console.verbosity.level=high
                     " >> ./cpptest.properties
