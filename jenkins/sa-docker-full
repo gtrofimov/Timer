@@ -23,7 +23,7 @@ pipeline {
         app_name = 'Timer' // top level DTP Project
         
         // Parasoft Settings
-        cpptestSAConfig="builtin://Recommended Rules"
+        cpptestSAConfig="builtin://SEI CERT C Rules"
 
         // Dynamic configs
         BUILD_TIMESTAMP = "${BUILD_ID}"
