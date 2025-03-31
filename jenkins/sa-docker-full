@@ -14,8 +14,8 @@ pipeline {
         string(name: 'DTP_URL', defaultValue: '', description: 'Parasoft DTP URL')
         string(name: 'DTP_USER', defaultValue: '', description: 'Parasoft DTP Username')
         password(name: 'DTP_PASS', defaultValue: '', description: 'Parasoft DTP Password')
+        string(name: 'DTP_PUBLISH', defaultValue: 'false', description: 'Publish this build to DTP')
         string(name: 'BUILD_ID', defaultValue: 'jenkins', description: 'The build Id of the project in DTP and CTP')
-
         // Add other parameters as needed
     }
     environment {
@@ -64,7 +64,8 @@ pipeline {
                     dtp.url=${DTP_URL}
                     dtp.user=${DTP_USER}
                     dtp.password=${DTP_PASS}
-                    
+                    report.dtp.publish=${DTP_PUBLISH}
+
                     scontrol.rep1.type=git
                     scontrol.rep1.git.url=https://github.com/gtrofimov/Timer.git
                     scontrol.rep1.git.branch=master
