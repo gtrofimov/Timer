@@ -10,7 +10,7 @@ struct timer_record
 {
     time_t starttime;
     time_t endtime;
-    unsigned channel;
+    unsigned channel; /* parasoft-suppress MISRAC2025-DIR_4_6-b "per code review: won't fix" */
 };
 
 /* init/uninit routines for the timer */

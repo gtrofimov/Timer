@@ -1,42 +1,144 @@
-------- cpptestscan v.10.7.1.CMAKE -------
+------- cpptestscan v.10.7.1 (cpptesttrace) -------
+# ctx.label.name: Timer
+# ctx.label.package: 
+# ctx.rule.kind: cc_binary
 working_dir=/home/gtrofimov/examples/Timer
 project_name=Timer
-arg=/usr/bin/cc
-arg=-o
-arg=CMakeFiles/TimerTest.dir/clock.c.o
+arg=/usr/bin/gcc
+arg=-U_FORTIFY_SOURCE
+arg=-fstack-protector
+arg=-Wall
+arg=-Wunused-but-set-parameter
+arg=-Wno-free-nonheap-object
+arg=-fno-omit-frame-pointer
+arg=-frandom-seed=bazel-out/k8-fastbuild/bin/_objs/Timer/clock.pic.o
+arg=-fPIC
+arg=-iquote
+arg=.
+arg=-iquote
+arg=bazel-out/k8-fastbuild/bin
+arg=-iquote
+arg=bazel-Timer/external/rules_cc+
+arg=-iquote
+arg=bazel-out/k8-fastbuild/bin/external/rules_cc+
+arg=-iquote
+arg=bazel-Timer/external/bazel_tools
+arg=-iquote
+arg=bazel-out/k8-fastbuild/bin/external/bazel_tools
 arg=-c
-arg=/home/gtrofimov/examples/Timer/clock.c
-------- cpptestscan v.10.7.1.CMAKE -------
+arg=clock.c
+arg=-o
+arg=bazel-out/k8-fastbuild/bin/_objs/Timer/clock.pic.o
+arg=-fno-canonical-system-headers
+arg=-Wno-builtin-macro-redefined
+arg=-D__DATE__="redacted"
+arg=-D__TIMESTAMP__="redacted"
+arg=-D__TIME__="redacted"
+------- cpptestscan v.10.7.1 (cpptesttrace) -------
+# ctx.label.name: Timer
+# ctx.label.package: 
+# ctx.rule.kind: cc_binary
 working_dir=/home/gtrofimov/examples/Timer
 project_name=Timer
-arg=/usr/bin/cc
-arg=-o
-arg=CMakeFiles/TimerTest.dir/driver.c.o
+arg=/usr/bin/gcc
+arg=-U_FORTIFY_SOURCE
+arg=-fstack-protector
+arg=-Wall
+arg=-Wunused-but-set-parameter
+arg=-Wno-free-nonheap-object
+arg=-fno-omit-frame-pointer
+arg=-frandom-seed=bazel-out/k8-fastbuild/bin/_objs/Timer/driver.pic.o
+arg=-fPIC
+arg=-iquote
+arg=.
+arg=-iquote
+arg=bazel-out/k8-fastbuild/bin
+arg=-iquote
+arg=bazel-Timer/external/rules_cc+
+arg=-iquote
+arg=bazel-out/k8-fastbuild/bin/external/rules_cc+
+arg=-iquote
+arg=bazel-Timer/external/bazel_tools
+arg=-iquote
+arg=bazel-out/k8-fastbuild/bin/external/bazel_tools
 arg=-c
-arg=/home/gtrofimov/examples/Timer/driver.c
-------- cpptestscan v.10.7.1.CMAKE -------
+arg=driver.c
+arg=-o
+arg=bazel-out/k8-fastbuild/bin/_objs/Timer/driver.pic.o
+arg=-fno-canonical-system-headers
+arg=-Wno-builtin-macro-redefined
+arg=-D__DATE__="redacted"
+arg=-D__TIMESTAMP__="redacted"
+arg=-D__TIME__="redacted"
+------- cpptestscan v.10.7.1 (cpptesttrace) -------
+# ctx.label.name: Timer
+# ctx.label.package: 
+# ctx.rule.kind: cc_binary
 working_dir=/home/gtrofimov/examples/Timer
 project_name=Timer
-arg=/usr/bin/cc
-arg=-o
-arg=CMakeFiles/TimerTest.dir/timer.c.o
+arg=/usr/bin/gcc
+arg=-U_FORTIFY_SOURCE
+arg=-fstack-protector
+arg=-Wall
+arg=-Wunused-but-set-parameter
+arg=-Wno-free-nonheap-object
+arg=-fno-omit-frame-pointer
+arg=-frandom-seed=bazel-out/k8-fastbuild/bin/_objs/Timer/stdinout.pic.o
+arg=-fPIC
+arg=-iquote
+arg=.
+arg=-iquote
+arg=bazel-out/k8-fastbuild/bin
+arg=-iquote
+arg=bazel-Timer/external/rules_cc+
+arg=-iquote
+arg=bazel-out/k8-fastbuild/bin/external/rules_cc+
+arg=-iquote
+arg=bazel-Timer/external/bazel_tools
+arg=-iquote
+arg=bazel-out/k8-fastbuild/bin/external/bazel_tools
 arg=-c
-arg=/home/gtrofimov/examples/Timer/timer.c
-------- cpptestscan v.10.7.1.CMAKE -------
+arg=stdinout.c
+arg=-o
+arg=bazel-out/k8-fastbuild/bin/_objs/Timer/stdinout.pic.o
+arg=-fno-canonical-system-headers
+arg=-Wno-builtin-macro-redefined
+arg=-D__DATE__="redacted"
+arg=-D__TIMESTAMP__="redacted"
+arg=-D__TIME__="redacted"
+------- cpptestscan v.10.7.1 (cpptesttrace) -------
+# ctx.label.name: Timer
+# ctx.label.package: 
+# ctx.rule.kind: cc_binary
 working_dir=/home/gtrofimov/examples/Timer
 project_name=Timer
-arg=/usr/bin/cc
-arg=-o
-arg=CMakeFiles/TimerTest.dir/stdinout.c.o
+arg=/usr/bin/gcc
+arg=-U_FORTIFY_SOURCE
+arg=-fstack-protector
+arg=-Wall
+arg=-Wunused-but-set-parameter
+arg=-Wno-free-nonheap-object
+arg=-fno-omit-frame-pointer
+arg=-frandom-seed=bazel-out/k8-fastbuild/bin/_objs/Timer/timer.pic.o
+arg=-fPIC
+arg=-iquote
+arg=.
+arg=-iquote
+arg=bazel-out/k8-fastbuild/bin
+arg=-iquote
+arg=bazel-Timer/external/rules_cc+
+arg=-iquote
+arg=bazel-out/k8-fastbuild/bin/external/rules_cc+
+arg=-iquote
+arg=bazel-Timer/external/bazel_tools
+arg=-iquote
+arg=bazel-out/k8-fastbuild/bin/external/bazel_tools
 arg=-c
-arg=/home/gtrofimov/examples/Timer/stdinout.c
-------- cpptestscan v.10.7.1.CMAKE -------
-working_dir=/home/gtrofimov/examples/Timer
-project_name=Timer
-arg=/usr/bin/cc
-arg=CMakeFiles/TimerTest.dir/clock.c.o
-arg=CMakeFiles/TimerTest.dir/driver.c.o
-arg=CMakeFiles/TimerTest.dir/timer.c.o
-arg=CMakeFiles/TimerTest.dir/stdinout.c.o
+arg=timer.c
 arg=-o
-arg=TimerTest
+arg=bazel-out/k8-fastbuild/bin/_objs/Timer/timer.pic.o
+arg=-fno-canonical-system-headers
+arg=-Wno-builtin-macro-redefined
+arg=-D__DATE__="redacted"
+arg=-D__TIMESTAMP__="redacted"
+arg=-D__TIME__="redacted"

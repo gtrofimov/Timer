@@ -1,37 +1,28 @@
-
 /*
  * Timer class, stores timer records
  */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
 #include "clock.h"
 #include "consts.h"
 #include "inout.h"
 #include "timer.h"
-
-
 static struct timer_record* timer_records[BUF_SIZE];
 const int max_records = BUF_SIZE;
 static int curr_index = 0;
-
 void init_timer()
 {
     memset(timer_records, 0, sizeof(struct timer_record*) * BUF_SIZE); 
 }
-
 void uninit_timer()
 {
     /* Remove all timer records */
     int i;
-
     for (i = 0; i < max_records; i++) {
         delete_timer_record(i);
     }
 }
-
 /*
  * Queries user for timer information
  */
@@ -41,7 +32,6 @@ struct timer_record* query_user()
     struct timer_record* the_record;
     time_t timer;
     struct tm* tm_tmp;
-
     timer = time(NULL);
     tm_tmp = localtime(&timer);
     
@@ -49,13 +39,12 @@ struct timer_record* query_user()
     memset(the_record, 0, sizeof(struct timer_record));
     
     /* starttime */
-    print_string("Please enter the start hour [0-23] > ");
+    print_string("Please enter the start hour [0-23] > "); /* parasoft-suppress CERT_C-STR05-a "per code review: won't fix" */
     tm_tmp->tm_hour = get_input_digit();
     print_string("Please enter the start minute [0-59] > ");
     tm_tmp->tm_min = get_input_digit();
     
     the_record->starttime = mktime(tm_tmp);
-
     /* endtime */
     print_string("\nPlease enter the end hour [0-23] > ");
     tm_tmp->tm_hour = get_input_digit();
@@ -63,20 +52,15 @@ struct timer_record* query_user()
     tm_tmp->tm_min = get_input_digit();
     
     the_record->endtime = mktime(tm_tmp);
-
     /* channel */
     print_string("\nPlease enter the channel to record > ");
     the_record->channel = get_input_digit();
-
     return (the_record);
 }
-
-int add_timer()
+int add_timer() /* parasoft-suppress MISRAC2025-DIR_4_6-b "per code review: won't fix" */
 {
     struct timer_record* record;
-
     record = query_user();
-
     if (record) {
         add_timer_record(record);
     } else {
@@ -84,14 +68,13 @@ int add_timer()
     }
     return 0;
 }
-
 void add_timer_record(struct timer_record* tr)
 {
 #ifdef OUTPUT
     {
         char[50] buf;
         sprintf(buf, "Curr Index = %d\n", curr_index);
-        _EB_SEND(buf)
+        *EB*SEND(buf)
     }
 #endif
     if (curr_index < max_records) {
@@ -100,7 +83,6 @@ void add_timer_record(struct timer_record* tr)
         print_string("\nAll timers used ... timer not added\n");
     }
 }
-
 /*
  * Removed record at idx
  * Moves all records past idx, up one slot
@@ -122,27 +104,24 @@ void delete_timer_record(int idx)
     curr_index--;
     free(tr);
 }
-
 void format_timer_record(int idx, char* buf)
 {
     char start[BUF_SIZE];
     char end[BUF_SIZE];
     
     struct timer_record* tr = timer_records[idx];
-
     strftime(start, BUF_SIZE, "%I:%M %p", localtime(&tr->starttime));
     strftime(end, BUF_SIZE, "%I:%M %p", localtime(&tr->endtime));
-
     if (tr) {
         sprintf(buf, "%d\t%s\t%s\t%d\n", idx+1, start, end, tr->channel);
     }
     
 }
-
 void list_timers()
 {
     char buf[BUF_SIZE];
     int i;
+    int total_records = curr_index; /* Added this meaningless variable */
     print_string("\n\nCurrent Set Timers");
     print_string("\nRecord#\tStart Time\tEnd Time\tChannel\n");
     for (i = 0; i < curr_index; i++)
@@ -152,4 +131,3 @@ void list_timers()
     }
     print_string("\n\n");
 }
-
