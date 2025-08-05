@@ -19,3 +19,4 @@ reports/*.png
 .vscode
 cpptestcli.properties
 tests/
+*.exe
